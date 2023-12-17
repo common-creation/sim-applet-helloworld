@@ -1,0 +1,24 @@
+version: 1
+jobs:
+  build:
+    shell: powershell.exe
+    steps:
+      - cmd: git submodule update --init --recursive
+        if:
+          - directory:
+              missing: ./sdks/jc310r20210706_kit
+      - cmd: ./download_apifiles.bat
+        dir: ./lib
+        if:
+          - directory:
+              missing: ./lib/31130-d30
+          - directory:
+              missing: ./lib/ts_102241v130000p0
+      - cmd: |-
+          scoop bucket add java
+          scoop install java/corretto17-jdk
+          scoop install main/ant
+          ant -v -noinput -buildfile build.xml
+      - use: common-creation/quickops-plugin-artifact#main
+        env:
+          - ARTIFACT_PATH=./suncap
