@@ -1,3 +1,4 @@
+:: REF: https://sdpf.ntt.com/services/docs/icms/service-descriptions/applet/sample_applet/sample_applet.html#/api-usim-apiuicc-api
 ::
 :: download *.exp, *.jar, and JavaDoc from 3GPP and ETSI and extract them
 ::
